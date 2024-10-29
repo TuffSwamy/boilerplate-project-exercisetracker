@@ -25,11 +25,15 @@ let userSchema = new mongoose.Schema({
 let user = new mongoose.model('User', userSchema);
 
 app.post('/api/users', (req, res) => {
-  let username = req.body.username;
-  user.save({ username: username, id: new ObjectId() }, (err, data) => {
+  let newUser = User(
+    {
+      username:req.body.username,
+      _ip: ObjectId(),
+    }
+  );
+		res.json({ username: user.username, _id: user._id });
+	});
 
-});
-} );
 const listener = app.listen(process.env.PORT || 3000, () => 
 {
   console.log('Your app is listening on port ' + listener.address().port)

@@ -22,16 +22,22 @@ let userSchema = new mongoose.Schema({
   username: String,
   id: String
 });
-let user = new mongoose.model('User', userSchema);
+
+let User = mongoose.model('User', userSchema);
 
 app.post('/api/users', (req, res) => {
-  let newUser = user(
-    {
-      username:req.body.username,
-      _ip: new ObjectId(),
-    }
-  );
-		res.json({newUser });
+  let newUser = new User({
+    username: req.body.username,
+    _id: new mongoose.Types.ObjectId() // Generate new ObjectId
+  });
+
+  newUser.save((err, savedUser) => {
+    if (err) return res.status(500).json({ error: err });
+    res.json({
+      username: savedUser.username,
+      _id: savedUser._id
+    });
+  });
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => 

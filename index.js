@@ -20,7 +20,7 @@ mongoose.connection.on('error', (err) => {
 });
 let userSchema = new mongoose.Schema({
   username: String,
-  id: String
+  _id: mongoose.Schema.Types.ObjectId
 });
 
 let User = mongoose.model('User', userSchema);

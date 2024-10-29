@@ -37,6 +37,13 @@ app.post('/api/users', (req, res) => {
     res.json({ username: newUser.username, _id: newUser._id });
   });
 
+  app.get('/api/users', (req, res) => {
+    User.find({}, (err, data) => {
+      if (err) return console.error(err);
+      res.json(data);
+    });
+  }); 
+
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port);
 });

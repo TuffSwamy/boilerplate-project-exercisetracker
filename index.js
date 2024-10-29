@@ -25,7 +25,7 @@ let userSchema = new mongoose.Schema({
 let user = new mongoose.model('User', userSchema);
 
 app.post('/api/users', (req, res) => {
-  let newUser = User(
+  let newUser = user(
     {
       username:req.body.username,
       _ip: new ObjectId(),

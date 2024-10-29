@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 require('dotenv').config()
-const uid = require('uuid'); 
+const { v4: uuidv4 } = require('uuid'); // Corrected import
 const mongoose = require('mongoose');
 
 app.use(cors())
@@ -19,10 +19,12 @@ mongoose.connection.on('error', (err) => {
 });
 
 app.post('/api/users', (req, res) => {
-  let user = users.push(req.body.username);
+  let user = req.body.username;
+  let id = uuidv4(); 
+  users.push({ username: req.body.username, id: id });
   res.json({
     username: req.body.username,
-    _id:"user.id"
+    _id:id 
   });
 });
 

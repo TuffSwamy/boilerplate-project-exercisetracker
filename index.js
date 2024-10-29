@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 require('dotenv').config()
-//const uid = require('uid'); 
+const uid = require('uid'); 
 
 app.use(cors())
 app.use(express.static('public'))

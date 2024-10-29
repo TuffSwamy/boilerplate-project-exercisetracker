@@ -26,23 +26,21 @@ let userSchema = new mongoose.Schema({
 
 let User = mongoose.model('User', userSchema);
 
-app.post('/api/users', (req, res) => {
+app.post('/api/users', async (req, res) => {
   let newUser = new User(
     { 
       username: req.body.username,
        _id: new ObjectId() 
     });
     console.log(req.body.username);
-    newUser.save((err, data) => {
-      if (err) return console.error(err);
+    await newUser.save();
     res.json({ username: newUser.username, _id: newUser._id });
-  });
 });
 app.get('/api/users', (req, res) => {
     User.find({}, (err, data) => {
       if (err) return console.error(err);
       res.data = data;
-      res.json(data);
+      res.json("huhii");
     });
   }); 
 

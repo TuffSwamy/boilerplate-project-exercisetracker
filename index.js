@@ -16,7 +16,7 @@ app.post('api/users', (req, res) => {
   let id = uuidv4();
   res.json({
     username: req.body.username,
-    id: id)
+    id: id
   });
 });
 

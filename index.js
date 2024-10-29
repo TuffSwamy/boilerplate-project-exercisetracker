@@ -20,10 +20,8 @@ mongoose.connection.on('error', (err) => {
 
 app.post('/api/users', (req, res) => {
   let user = users.push(req.body.username);
-  let id = uuidv4();
   res.json({
     username: req.body.username,
-    id: id
   });
 });
 

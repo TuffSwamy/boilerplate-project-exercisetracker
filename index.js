@@ -36,14 +36,20 @@ app.post('/api/users', async (req, res) => {
     await newUser.save();
     res.json({ username: newUser.username, _id: newUser._id });
 });
-app.get('/api/users', (req, res) => {
-    User.find({}, (err, data) => {
-      if (err) return console.error(err);
-      res.data = data;
-      res.json("huhii");
+app.get('/api/users', async(req, res) => 
+  {
+  try {
+    let users = await User.find({});
+    users = users.map(user => {
+      return { username: user.username, _id: user._id };
     });
-  }); 
+    res.json(users);
+  }  
+  catch (error) {
+    console.log(error);
+  }; 
+});
 
-const listener = app.listen(process.env.PORT || 3000, () => {
+  const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port);
 });

@@ -29,8 +29,9 @@ app.post('/api/users', (req, res) => {
   let newUser = new User(
     { 
       username: req.body.username,
-       _id: new ObjectId() });
-
+       _id: new ObjectId() 
+    });
+    console.log(newUser);
     newUser.save(); 
     res.json({ username: newUser.username, _id: newUser._id });
   });

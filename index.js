@@ -28,10 +28,10 @@ app.post('/api/users', (req, res) => {
   let newUser = User(
     {
       username:req.body.username,
-      //_ip: ObjectId(),
+      _ip: new ObjectId(),
     }
   );
-		res.json({ username: user.username, _id: user._id });
+		res.json({ username: newUser.username, _id: newUser._id });
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => 

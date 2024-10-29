@@ -6,6 +6,7 @@ const uid = require('uuid');
 
 app.use(cors())
 app.use(express.static('public'))
+app.use(uid); 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });

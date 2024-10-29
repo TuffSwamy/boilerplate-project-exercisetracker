@@ -31,7 +31,7 @@ app.post('/api/users', (req, res) => {
     _id: new mongoose.Types.ObjectId() // Generate new ObjectId
   });
 
-  newUser.save((err, savedUser) => {
+  newUser.save().then((err, savedUser) => {
     if (err) return res.status(500).json({ error: err });
     res.json({
       username: savedUser.username,

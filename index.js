@@ -26,19 +26,14 @@ let userSchema = new mongoose.Schema({
 let User = mongoose.model('User', userSchema);
 
 app.post('/api/users', (req, res) => {
-  let newUser = new User({
-    username: req.body.username,
-    _id: new mongoose.Types.ObjectId() // Generate new ObjectId
-  });
+  let newUser = new User(
+    { username: req.body.username,
+       _id: new ObjectId() });
 
-  newUser.save((err, savedUser) => {
-    if (err) return res.status(500).json({ error: err });
-    res.json({
-      username: savedUser.username,
-      _id: savedUser._id
-    });
+    newUser.save(); 
+    res.json({ username: data.username, _id: data._id });
+    
   });
-});
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port);

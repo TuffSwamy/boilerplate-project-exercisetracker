@@ -27,12 +27,12 @@ let User = mongoose.model('User', userSchema);
 
 app.post('/api/users', (req, res) => {
   let newUser = new User(
-    { username: req.body.username,
+    { 
+      username: req.body.username,
        _id: new ObjectId() });
 
     newUser.save(); 
-    res.json({ username: data.username, _id: data._id });
-    
+    res.json({ username: newUser.username, _id: newUser._id });
   });
 
 const listener = app.listen(process.env.PORT || 3000, () => {

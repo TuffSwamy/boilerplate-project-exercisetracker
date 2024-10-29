@@ -15,7 +15,7 @@ app.post('api/users', (req, res) => {
   let user = users.push(req.body.username);
   res.json({
     username: req.body.username,
-    id: uid(users.findIndex(user)); 
+    id: uid(users.findIndex(user))
   });
 });
 

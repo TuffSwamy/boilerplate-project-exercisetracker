@@ -17,7 +17,7 @@ mongoose.connection.on('error', (err) => {
   console.error(`MongoDB connection error: ${err}`);
 });
 
-app.post('api/users', (req, res) => {
+app.post('/api/users', (req, res) => {
   let user = users.push(req.body.username);
   let id = uuidv4();
   res.json({

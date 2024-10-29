@@ -33,13 +33,15 @@ app.post('/api/users', (req, res) => {
        _id: new ObjectId() 
     });
     console.log(req.body.username);
-    newUser.save(); 
+    newUser.save((err, data) => {
+      if (err) return console.error(err);
     res.json({ username: newUser.username, _id: newUser._id });
   });
 
-  app.get('/api/users', (req, res) => {
+app.get('/api/users', (req, res) => {
     User.find({}, (err, data) => {
       if (err) return console.error(err);
+      res.data = data;
       res.json(data);
     });
   }); 

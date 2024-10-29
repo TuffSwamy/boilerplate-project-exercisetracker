@@ -37,7 +37,7 @@ app.post('/api/users', (req, res) => {
       if (err) return console.error(err);
     res.json({ username: newUser.username, _id: newUser._id });
   });
-
+});
 app.get('/api/users', (req, res) => {
     User.find({}, (err, data) => {
       if (err) return console.error(err);

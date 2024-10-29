@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 require('dotenv').config()
+const uid = require('uid'); 
 
 app.use(cors())
 app.use(express.static('public'))
@@ -11,10 +12,10 @@ app.get('/', (req, res) => {
 let users = [];
 
 app.post('api/users', (req, res) => {
-  users.push(req.body.username);
+  let user = users.push(req.body.username);
   res.json({
     username: req.body.username,
-    _id: req.body.username
+    id: uid(users.findIndex(user)); 
   });
 });
 

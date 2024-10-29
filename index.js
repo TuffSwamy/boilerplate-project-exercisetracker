@@ -31,7 +31,7 @@ app.post('/api/users', (req, res) => {
       _ip: new ObjectId(),
     }
   );
-		res.json({ username: newUser.username, _id: newUser._id });
+		res.json({newUser });
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => 

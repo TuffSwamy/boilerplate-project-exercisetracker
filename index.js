@@ -22,7 +22,7 @@ app.post('/api/users', (req, res) => {
   let user = users.push(req.body.username);
   res.json({
     username: req.body.username,
-    id:"user.id"
+    _id:"user.id"
   });
 });
 

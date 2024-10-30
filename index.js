@@ -25,7 +25,7 @@ let userSchema = new mongoose.Schema({
 });
 
 let User = mongoose.model('User', userSchema);
-
+let Users =[{}];
 app.post('/api/users', async (req, res) => {
   let newUser = new User(
     { 
@@ -34,7 +34,8 @@ app.post('/api/users', async (req, res) => {
     });
     console.log(req.body.username);
     await newUser.save();
-    res.json({ username: newUser.username, _id: newUser._id });
+    Users.push(newUser);
+    res.json(Users);
 });
 app.get('/api/users', async(req, res) => 
   {
